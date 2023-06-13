@@ -1,0 +1,83 @@
+<app-navbar></app-navbar>
+<div class="hero-wrap" style="background-image: url('assets/images/image_5.jpg');" data-stellar-background-ratio="0.5">
+  <div class="section">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br><br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br><br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br><br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br><br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+
+
+
+
+
+    <div>
+
+
+      <form class="profile-form" [formGroup]="form">
+        <h2> Update Inspection</h2>
+        <div class="" style="
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+    ">
+        <label for="email">Description :</label>
+        <input type="text" id="email" formControlName="description" [(ngModel)]="inspection.description" required>
+        <label for="nom">Date :</label>
+        <input type="date" id="nom" formControlName="date" [(ngModel)]="inspection.date" required>
+        <label for="telephone">ville :</label>
+        <input type="tel" id="telephone" formControlName="ville" [(ngModel)]="inspection.ville" required>
+
+        <!-- <label for="nouveau-mot-de-passe">Nouveau mot de passe :</label>
+            <input type="password" id="nouveau-mot-de-passe" formControlName="password"> -->
+
+        <button type="submit" class="btn btn-primary ms-2" style="
+        margin-left: 1rem;
+    " (click)="updateInspection()">Enregistrer les modifications</button>
+        </div>
+      </form>
+    </div>
+    <div>
+
+    </div>
+
+    <app-footer></app-footer>

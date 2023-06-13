@@ -1,0 +1,22 @@
+<nav>
+  <div class="logo">
+    <a href="#"><img src="../assets/images/480px-BH_BANK.png" alt="Logo"></a>
+  </div>
+  <div class="menu">
+    <ul>
+      <li><a routerLink="">Accueil</a></li>
+      <li><a href="#">À propos</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a routerLink="/contact">Contact</a></li>
+      <div class="sidebar" *ngIf="utilisateur && ( role === 'ROLE_RH' )">
+        <li><a routerLink="/">espace responsable resource humaine </a></li>
+        <li><a routerLink="/user">userlist</a></li>
+      </div>
+      <div class="sidebar" *ngIf="utilisateur && ( role === 'ROLE_USER' )">
+      <li><a routerLink="/dashboardadmin">Espace resp</a></li>
+    </div>
+      <div class="sidebar" *ngIf="utilisateur && ( role === 'ROLE_ADMIN' )">
+        <li><a routerLink="/user">userlist</a></li></div>
+    </ul>
+  </div>
+</nav>

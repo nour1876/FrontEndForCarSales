@@ -1,0 +1,17 @@
+
+<div class="card-container">
+    <div *ngFor="let car of favoris" class="card">
+        <div class="img" [style.background-image]="car.image ? 'url(' + getImageURL(car.image) + ')' : 'url(../../assets/images/car-1.jpg)'">
+      <div class="card-body">
+        <h5 class="card-title">{{ car.description }}</h5>
+        <p class="card-text">Price: {{ car.prix }}</p>
+        <p class="card-text">Location: {{ car.lieu }}</p>
+      </div>
+      <div class="favorite-icon" (click)="toggleFavorite()">
+        <i class="fa fa-heart" [class.favorite]="isFavorite"></i>
+      </div>
+    </div>
+</div>
+  </div>
+
+  

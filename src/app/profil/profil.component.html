@@ -1,0 +1,266 @@
+<app-navbar></app-navbar>
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url(assets/images/bg_2.jpg); height: 1028px; background-position: 50% 0%;" data-stellar-background-ratio="0.5">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start" style="height: 1028px;">
+      <div class="col-md-9 ftco-animate pb-5 fadeInUp ftco-animated">
+        <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Acceuil <i class="ion-ios-arrow-forward"></i></a></span> <span>Mon espace <i class="ion-ios-arrow-forward"></i></span></p>
+        <h1 class="mb-3 bread">Mon Espace</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+ <br>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="my-3">{{this.user.username}}</h5>
+
+            <p class="text-muted mb-4">{{this.user.adress}}</p>
+            <div class="d-flex justify-content-center mb-2">
+              <button type="button" class="btn btn-primary" [routerLink]="['/updateprofil/', user.id]">Modifier</button>
+
+            </div>
+          </div>
+        </div>
+        <div class="card mb-4 mb-lg-0">
+          <div class="card-body p-0">
+            <ul class="list-group list-group-flush rounded-3">
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fas fa-globe fa-lg text-warning"></i>
+                <a (click)="openPopup()"><span style="color: #fc983c"><strong >📋
+                  Annonces</strong></span></a>
+                  <div class="modal" [class.open]="modalOpen">
+                    <div class="modal-content">
+                      <h2 class="modal-title">Annonces</h2>
+                      <p class="modal-text">voulez vous ajouter une annonce ?.</p>
+                      <div class="modal-buttons">
+                        <button class="modal-close" (click)="closeModal()">Fermer</button>
+                        <button class="modal-add-formular" (click)="openFormularModal()">Ajouter anonce</button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="modal" [class.open]="formularModalOpen">
+                    <div class="modal-content">
+                      <h2 class="modal-title">Formular Modal</h2>
+                    
+                      <div class="container">
+                        <div class="wrapper">
+                          <div>
+                            <input type="file" (change)="onFileSelected($event)" multiple>
+                            <input type="text" [(ngModel)]="description" placeholder="Description">
+                            <select [(ngModel)]="categorie" class="form-select">
+                              <option *ngFor="let item of listcategorie" value="{{item.id}}">{{item.marque}}</option>
+                            </select>
+                            <input type="text" [(ngModel)]="prix" placeholder="Prix">
+                            <input type="text" [(ngModel)]="lieu" placeholder="Lieu">
+                            <div class="button-group">
+                              <button class="upload-button" (click)="uploadFiles(3)">Upload</button>
+                              <button class="close-button" (click)="closeFormularModal()">Close</button>
+                            </div>
+                          </div>
+                          <div *ngIf="message" class="message">
+                            {{ message }}
+                          </div>
+                        </div>
+                        
+                        
+                      </div>
+                      
+                    </div>
+                  </div>
+                  
+                  
+                  
+                        
+
+        </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                <a href="myinspection"><span><strong>
+
+                  📥 Inspections</strong></span></a>
+                 
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fab fa-github fa-lg" style="color:#fc983c;"></i>
+                <a (click)="openInspecModal()" style="color:#fc983c;"><span><strong>
+
+                  📥Received Inspections</strong></span></a>
+                  <div class="modal" [class.open]="modalInspec">
+                    <div class="modal-content">
+                      <h2 class="modal-title">Alert</h2>
+                      <p class="modal-text">vous n'avez pas des inspections.</p>
+                      <div class="modal-buttons">
+                        <button class="modal-close" (click)="closeInspecModal()">Fermer</button>
+                        
+                      </div>
+                    </div>
+                  </div>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                <a href="reclamation"><span><strong>
+                  📤
+                  Réclamations</strong></span></a>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+
+                <a href="favoris"><span><strong>🧡
+                  Favoris</strong></span></a>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+                <button class="btn btn-primary"(click)="logout()"><span><strong>
+                  Logout</strong></span></button>
+
+              </li>
+              <li _ngcontent-jtu-c49="" class="nav-item">
+                <a _ngcontent-jtu-c49="" data-toggle="tab" href="#password_tab" class="nav-link">Favoris</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">username</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{this.user.username}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{this.user.email}}</p>
+              </div>
+            </div>
+
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">phone</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{this.user.phone}}</p>
+              </div>
+            </div>
+            <hr>
+
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Adress</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{this.user.adress}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card mb-4 mb-md-0">
+              <div class="card-body">
+                <p class="mb-4"><span class="text-primary font-italic me-1">Pour plus d'informations</span>
+                </p>
+                <p class="mb-1" style="font-size: .77rem;">Dans quelle zone vous préférer de rechercher votre voiture?</p>
+<input type="text" id="lieu" placeholder="Tapez">
+
+                <p class="mt-4 mb-1" style="font-size: .77rem;">C'est quoi votre marque préférée?</p>
+                <input type="text" id="marque" placeholder="Tapez">
+                <p class="mt-4 mb-1" style="font-size: .77rem;">C'est quoi votre modéle préférée?</p>
+                <input type="text" id="modéle" placeholder="Tapez">
+                <br>
+                <br>
+                <div  class="text-center">
+                <button type="submit" class="btn btn-primary" >Envoyer</button>
+              </div>
+
+
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+        <div _ngcontent-jtu-c49="" id="password_tab" class="tab-pane fade">
+          <div _ngcontent-jtu-c49="" class="card">
+            <app-favorite></app-favorite>
+          </div></div>
+       
+      
+
+<br>
+
+<div class="content-wrapper">
+
+
+  <div id="super_content_container">
+      <div id="bandeau_container">
+          <div id="bandeau">
+              <div class="ban">
+                                          <div class="rv rv-1" data-zoneid="1">
+<script><!--//<![CDATA[
+ var m3_u = 'https://display.automobile.tn/www/delivery/ajs.php';
+ var m3_r = Math.floor(Math.random()*99999999999);
+ if (!document.MAX_used) document.MAX_used = ',';
+ document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+ document.write ("?zoneid=1");
+ document.write ('&amp;cb=' + m3_r);
+ if (document.MAX_used !== ',') document.write ("&amp;exclude=" + document.MAX_used);
+ document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+ document.write ("&amp;loc=" + escape(window.location));
+ if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+ if (document.context) document.write ("&context=" + escape(document.context));
+ if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+ document.write ("'><\/scr"+"ipt>");
+//]]>--></script><script type="text/javascript" src="https://display.automobile.tn/www/delivery/ajs.php?zoneid=1&amp;cb=10591417027&amp;charset=UTF-8&amp;loc=https%3A//www.automobile.tn/fr/mon-espace&amp;referer=https%3A//www.automobile.tn/fr/mon-espace/credits"></script><div style="position: relative;">
+<a target="_blank" href="https://display.automobile.tn/www/delivery/cl.php?bannerid=3352&amp;zoneid=1&amp;sig=2a4dd08eb22305ec8a776252c551524e77575bf2858f26abf9df87b2f1f97fc2&amp;oadest=https%3A%2F%2Fwww.hyundai.com.tn%2Fdevis" style="position:absolute; display:flex; width:1000px; height:300px; z-index:501;"></a>
+</div><iframe id="rv-h5-d0fb94a86d" name="rv-h5-d0fb94a86d" src="https://display.automobile.tn/banners/7c64f88748bf886c6529ceddeecee257/index.html?clickTag=https%3A%2F%2Fdisplay.automobile.tn%2Fwww%2Fdelivery%2Fcl.php%3Fbannerid%3D3352%26zoneid%3D1%26sig%3D2a4dd08eb22305ec8a776252c551524e77575bf2858f26abf9df87b2f1f97fc2%26oadest%3Dhttps%253A%252F%252Fwww.hyundai.com.tn%252Fdevis" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" width="1000" height="300" style="width: 1000px; height: 300px; border: 0"></iframe>
+<script>
+document.getElementById('rv-h5-d0fb94a86d').onload = true ? function () {
+var i = document.createElement('IMG');
+i.src = 'https://display.automobile.tn/www/delivery/lg.php?bannerid=3352&campaignid=738&zoneid=1&loc=https%3A%2F%2Fwww.automobile.tn%2Ffr%2Fmon-espace&referer=https%3A%2F%2Fwww.automobile.tn%2Ffr%2Fmon-espace%2Fcredits&cb=d0fb94a86d';
+} : null;
+</script><link rel="stylesheet" href="https://www.automobile.tn/css/resize-banner.css?v=2" type="text/css" media="screen">
+<noscript><a href="https://display.automobile.tn/www/delivery/ck.php?n=af883fd7&amp;cb=76755de8d798cab3fb99350369deea99" target="_blank"><img src="https://display.automobile.tn/www/delivery/avw.php?zoneid=1&amp;cb=76755de8d798cab3fb99350369deea99&amp;n=af883fd7" style="border: 0" alt="" /></a></noscript>
+</div>                                    </div>
+          </div>
+      </div>
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<div class="modal">
+  <div class="modal-content">
+    <h2>Modal Title</h2>
+    <p>This is the modal content.</p>
+    <button (click)="closeModal()">Close</button>
+  </div>
+</div>
+
+
+<app-footer></app-footer>

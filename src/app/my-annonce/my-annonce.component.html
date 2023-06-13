@@ -1,0 +1,146 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto%7CVarela+Round">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- <div class="hero-wrap" style="background-image: url('assets/images/image_5.jpg');" data-stellar-background-ratio="0.5"></div> -->
+<app-navbar></app-navbar>
+<div class="hero-wrap" style="background-image: url('assets/images/image_5.jpg');" data-stellar-background-ratio="0.5"></div>
+  <div class="section">
+    <br>
+    <br>
+
+
+<div>
+  <div class="job-listing-area pt-120 pb-120 ">
+    <div class="container1 ml-5">
+      <div class="row">
+        <!-- Left content -->
+        <div class="col-xl-3 col-lg-3 col-md-4">
+          <!-- Job Category Listing start -->
+          <div class="job-listing-area pt-120 pb-120">
+            <div class="container ml-5">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="small-section-title mb-4">
+                    <h4>Filters</h4>
+                  </div>
+          
+                  <div class="job-category-listing">
+                    <div class="single-listing">
+                      <div class="form-group">
+                        <label for="keywordInput">Recherche par mots</label>
+                        <div class="input-group">
+                          <input type="text" class="form-control" [(ngModel)]="keyword" (input)="search(keyword)" placeholder="Search by keyword">
+                         
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+
+                </div>
+
+                <!-- select-Categories End -->
+              </div></div></div></div></div></div>
+
+            </div>
+          </div>
+        </div>
+
+
+
+  
+
+
+
+    <div>
+
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>description</th>
+            <th>date</th>
+            <th>prix</th>
+            <th>image</th>
+            <th>lieu</th>
+            <th>Statut</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let a of filteredlistannonce">
+            <ng-container *ngIf="a.client.id == id">
+            <td>{{ a.id }}</td>
+            <td>{{ a.description }}</td>
+            <td>{{ a.date }}</td>
+            <td>{{ a.prix }}</td>
+            <td>
+              <img class="img-fluid" *ngIf="a.image" style="
+              width: 250px;
+          " [src]="getImageURL(a.image)" alt="">
+            </td>
+            <td>{{ a.lieu }}</td>
+            <td><ng-container *ngIf="a.statut == true; else elseTemplate">
+             <div class="btn btn-success">Active</div>
+            </ng-container>
+            <ng-template #elseTemplate>
+              <div class="btn btn-danger">Disabled</div>
+            </ng-template>
+          </td>
+
+            <td>
+              <a [routerLink]="['/updateAnnonce/', a.id]" class="settings" title="Settings" data-toggle="tooltip">
+                <i class="material-icons">&#xE8B8;</i>
+              </a>
+              <a class="delete" title="Delete" data-toggle="tooltip" (click)="deleteannonce(a.id)">
+                <i class="material-icons">&#xE5C9;</i>
+              </a>
+            </td>
+        </ng-container>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <button class="open-modal-button" (click)="openModal()">Open Modal</button>
+    
+      <div class="modal" *ngIf="isModalOpen">
+        <div class="modal-content">
+          <h2 class="modal-title">Ajouter annonce</h2>
+          <div class="container">
+            <div class="wrapper">
+              <input type="file" (change)="onFileSelected($event)" multiple>
+              <input type="text" [(ngModel)]="description" placeholder="Description">
+              <select [(ngModel)]="categorie" class="form-select">
+                <option *ngFor="let item of listcategorie" value="{{item.id}}">{{item.marque}}</option>
+              </select>
+              <input type="text" [(ngModel)]="prix" placeholder="Prix">
+              <input type="text" [(ngModel)]="lieu" placeholder="Lieu">
+              <div class="button-group">
+                <button class="upload-button" (click)="uploadFiles(3)">Upload</button>
+                <button class="close-button" (click)="closeModal()">Close</button>
+              </div>
+            </div>
+            <div *ngIf="message" class="message">
+              {{ message }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <app-footer></app-footer>
+    
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
